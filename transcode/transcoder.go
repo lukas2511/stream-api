@@ -340,7 +340,7 @@ func (t *Transcoder) templateConfig(s *stream.Stream) []byte {
 		Source:          s.Source,
 		Sink:            t.sink,
 		OutputType:      "direct",
-		TranscodingType: "h264-only",
+		TranscodingType: "all",
 	})
 	if err != nil {
 		log.Fatal().Err(err).Msg("transcoder: templateConfig")
