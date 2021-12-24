@@ -57,7 +57,10 @@ func (cc *ConsulClient) keepaliveSession(ctx context.Context) {
 		err := session.RenewPeriodic(cc.sessionTTL, cc.sessionId, nil, ctx.Done())
 		log.Warn().Err(err).Msg("failed to renew session")
 		time.Sleep(time.Second * 3)
-		cc.renewSession()
+		err = cc.renewSession()
+		if err != nil {
+			log.Error().Err(err).Msg("session recreation failed")
+		}
 	}
 }
 
